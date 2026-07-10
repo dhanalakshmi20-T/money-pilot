@@ -1,0 +1,17 @@
+node_modules/
+
+dist/
+
+.angular/
+
+.env
+
+uploads/
+
+coverage/
+
+.vscode/
+
+.idea/
+
+*.log
