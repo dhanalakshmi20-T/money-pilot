@@ -1,0 +1,125 @@
+<div class="login-page">
+    <div class="login-left">
+        <div class="overlay"></div>
+
+        <div class="brand">
+            <img src="assets/logo.png" alt="Monry Pilot" class="logo">
+            
+            <span class="tag">
+                <i class="fas fa-wallet"></i>
+                Smart Personal Finance
+            </span>
+
+            <h1>
+                Welcome Back to
+                <span>Money Pilot</span>
+            </h1>
+            
+            <p>Track your income, expenses, savings, budgets and financial goals from one beautiful dashboard.</p>
+        </div>
+
+        <div class="illustration">
+            <img src="assets/auth/login-illustration.png" alt="Login Illustration">
+        </div>
+
+        <div class="features">
+            <div class="feature">
+                <i class="fas fa-chart-line"></i>
+                <span>Real-time Analytics</span>
+            </div>
+
+            <div class="feature">
+                <i class="fas fa-wallet"></i>
+                <span>Expense Tracking</span>
+            </div>
+
+            <div class="feature">
+                <i class="fas fa-shield-alt"></i>
+                <span>Secure Authentication</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="login-right">
+        <div class="login-card">
+            <span class="login-tag">Welcome Back</span>
+            <h2>Login</h2>
+            <p class="subtitle">Sign in to continue to your dashboard.</p>
+
+            <form [formGroup]="loginForm" (ngSubmit)="login()">
+                <div class="form-group">
+                    <label>Email Address</label>
+
+                    <div class="input-group">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" formControlName="email" placeholder="Enter your email">
+                    </div>
+                    
+                    <small class="error" *ngIf="f.email.touched && f.email.invalid">Please enter a valid email.</small>
+                </div>
+
+                <div class="form-group">
+                    <label>Password</label>
+
+                    <div class="input-group">
+                        <i class="fas fa-lock"></i>
+                        <input [type]="showPassword ? 'text' : 'password'" formControlName="password" placeholder="Enter your password">
+                        
+                        <button type="button" class="password-toggle" (click)="togglePassword()">
+                            <i class="fas" [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'"></i>
+                        </button>
+                    </div>
+
+                    <small class="error" *ngIf="f.password.touched && f.password.invalid">Password must be at least 6 characters.</small>
+                </div>
+
+                <div class="form-options">
+                    <label class="remember">
+                        <input type="checkbox">
+                        Remember Me
+                    </label>
+
+                    <a routerLink="/forgot-password">Forgot Password?</a>
+                </div>
+
+                <div class="role-selection">
+                    <button type="button" class="role-btn" [class.active]="selectedRole=='user'" (click)="selectRole('user')">
+                        <i class="fas fa-user"></i>
+                        User
+                    </button>
+
+                    <button type="button" class="role-btn" [class.active]="selectedRole=='admin'" (click)="selectRole('admin')">
+                        <i class="fas fa-user-shield"></i>
+                        Admin
+                    </button>
+                </div>
+
+                <button type="submit" class="login-btn" [disabled]="loading">
+                    <ng-container *ngIf="!loading">
+                        Login
+                        <i class="fas fa-arrow-right"></i>
+                    </ng-container>
+
+                    <ng-container *ngIf="loading">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        Logging In...
+                    </ng-container>
+                </button>
+
+                <div class="divider">
+                    <span>OR</span>
+                </div>
+
+                <button type="button" class="google-btn">
+                    <img src="assets/icons/google.png" alt="Google">
+                    Continue with Google
+                </button>
+
+                <div class="bottom-text">
+                    Don't have an account?
+                    <a routerLink="/register">Create Account</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
