@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { LoginRequest } from '../../models/login-request';
 import { LoginResponse } from '../../models/login-response';
 import { RegisterRequest } from '../../models/register-request';
+import { RegisterResponse } from '../../models/register-response';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,7 @@ export class AuthService {
   }
 
   register(data: RegisterRequest): Observable<any> {
-    return this.http.post(`${this.apiUrl}/auth/register`, data);
+    return this.http.post<RegisterResponse>(`${this.apiUrl}/auth/register`, data);
   }
 
   logout() {
@@ -28,7 +29,7 @@ export class AuthService {
     localStorage.removeItem('user');
   }
 
-  saveSession(response: LoginResponse) {
+  saveSession(response: LoginResponse): void {
     localStorage.setItem('token', response.token);
     localStorage.setItem('user', JSON.stringify(response.user));
   }
@@ -42,7 +43,7 @@ export class AuthService {
     return user ? JSON.parse(user) : null;
   }
 
-  isLoggedIn() {
+  isLoggedIn(): boolean {
     return !!this.getToken();
   }
 }
