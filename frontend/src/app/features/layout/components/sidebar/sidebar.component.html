@@ -1,0 +1,54 @@
+<aside class="sidebar">
+    <div class="sidebar-logo">
+        <img src="assets/logo.png" alt="Money Pilot">
+    </div>
+
+    <nav class="sidebar-menu">
+        <a routerLink="/dashboard" routerLinkActive="active">
+            <i class="fas fa-home"></i>
+            <span>Dashboard</span>
+        </a>
+
+        <a routerLink="/income" routerLinkActive="active">
+            <i class="fas fa-wallet"></i>
+            <span>Income</span>
+        </a>
+
+        <a routerLink="/expenses" routerLinkActive="active">
+            <i class="fas fa-money-bill-wave"></i>
+            <span>Expenses</span>
+        </a>
+
+        <a routerLink="/budget" routerLinkActive="active">
+            <i class="fas fa-chart-pie"></i>
+            <span>Budget</span>
+        </a>
+
+        <a routerLink="/savings" routerLinkActive="active">
+            <i class="fas fa-piggy-bank"></i>
+            <span>Savings Goals</span>
+        </a>
+
+        <a routerLink="/transactions" routerLinkActive="active">
+            <i class="fas fa-list"></i>
+            <span>Transactions</span>
+        </a>
+
+        <a routerLink="/reports" routerLinkActive="active">
+            <i class="fas fa-chart-line"></i>
+            <span>Reports</span>
+        </a>
+    </nav>
+
+    <div class="sidebar-bottom">
+        <a routerLink="/settings" routerLinkActive="active">
+            <i class="fas fa-cog"></i>
+            <span>Settings</span>
+        </a>
+
+        <button class="logout-btn" (click)="logout()">
+            <i class="fas fa-sign-out-alt"></i>
+            Logout
+        </button>
+    </div>
+</aside>
