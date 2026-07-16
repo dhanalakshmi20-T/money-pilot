@@ -2,10 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
-import { LoginRequest } from '../../models/login-request';
-import { LoginResponse } from '../../models/login-response';
-import { RegisterRequest } from '../../models/register-request';
-import { RegisterResponse } from '../../models/register-response';
+import { LoginRequest } from '../models/auth/login-request';
+import { RegisterRequest } from '../models/auth/register-request';
+import { RegisterResponse } from '../models/auth/register-response';
+import { LoginResponse } from '../models/auth/login-response';
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +30,10 @@ export class AuthService {
   }
 
   saveSession(response: LoginResponse): void {
+    console.log("Saving Session...");
+    console.log("Token:", response.token);
+    console.log("User:", response.user);
+    
     localStorage.setItem('token', response.token);
     localStorage.setItem('user', JSON.stringify(response.user));
   }

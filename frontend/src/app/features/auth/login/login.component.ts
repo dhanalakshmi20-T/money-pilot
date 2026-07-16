@@ -1,9 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
-import { LoginRequest } from "src/app/core/models/login-request";
-import { LoginResponse } from "src/app/core/models/login-response";
-import { AuthService } from "src/app/core/services/auth/auth.service";
+import { LoginRequest } from "src/app/core/models/auth/login-request";
+import { LoginResponse } from "src/app/core/models/auth/login-response";
+import { AuthService } from "src/app/core/services/auth.service";
 
 @Component({
   selector: 'app-login',
@@ -24,7 +24,6 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-
     if (this.authService.isLoggedIn()) {
       const user = this.authService.getUser();
 
@@ -37,7 +36,7 @@ export class LoginComponent implements OnInit {
 
       return;
     }
-    
+
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]]
@@ -54,7 +53,7 @@ export class LoginComponent implements OnInit {
 
   login(): void {
     this.errorMessage = '';
-    
+
     if (this.loginForm.invalid) {
       this.loginForm.markAllAsTouched();
       return;
@@ -63,14 +62,25 @@ export class LoginComponent implements OnInit {
     this.loading = true;
 
     const request: LoginRequest = {
-      email: this.loginForm.value.email,
-      password: this.loginForm.value.password
+      email: this.f.email.value,
+      password: this.f.password.value
     };
 
     this.authService.login(request).subscribe({
       next: (response: LoginResponse) => {
+        console.log("======== LOGIN RESPONSE ========");
+        console.log(response);
+        console.log("Success:", response.success);
+        console.log("Message:", response.message);
+        console.log("Token:", response.token);
+        console.log("User:", response.user);
+        console.log("================================");
+
         this.loading = false;
         this.authService.saveSession(response);
+
+        console.log("Saved Token :", localStorage.getItem("token"));
+        console.log("Saved User :", localStorage.getItem("user"));
 
         if (response.user.role === 'ADMIN') {
           this.router.navigate(['/admin']);
@@ -81,8 +91,11 @@ export class LoginComponent implements OnInit {
       },
 
       error: (error) => {
+        console.error("LOGIN ERROR");
+        console.error(error);
+
         this.loading = false;
-        this.errorMessage = error.error?.message || 'Invalid email or password';
+        this.errorMessage = error.console.error?.message || 'Invalid email or password';
       }
     });
   }
