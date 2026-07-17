@@ -1,6 +1,6 @@
 <header class="navbar">
     <div class="navbar-left">
-        <button class="menu-btn" (click)="openSidebar()">
+        <button type="button" class="menu-btn" (click)="openSidebar()">
             <i class="fas fa-bars"></i>
         </button>
 
@@ -15,24 +15,54 @@
     </div>
 
     <div class="navbar-right">
-        <button class="icon-btn">
+        <button type="button" class="icon-btn">
             <i class="fas fa-moon"></i>
         </button>
 
-        <button class="icon-btn notification-btn">
+        <button type="button" class="icon-btn notification-btn">
             <i class="fas fa-bell"></i>
             <span class="badge">3</span>
         </button>
 
-        <div class="profile">
-            <img src="assets/default-user.png" alt="Profile">
+        <div class="profile-container">
+            <div class="profile" (click)="toggleDropdown()">
+                <img [src]="user?.profileImage || 'assets/default-user.png'" alt="Profile">
 
-            <div class="profile-info">
-                <h4>{{ user?.firstName }} {{ user?.lastName }}</h4>
-                <span>{{ user?.role }}</span>
+                <div class="profile-info">
+                    <h4>{{ user?.firstName }} {{ user?.lastName }}</h4>
+                    <span>{{ user?.role === 'ADMIN' ? 'Administrator' : 'Member' }}</span>
+                </div>
+
+                <i class="fas" [ngClass]="isDropdownOpen ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
             </div>
 
-            <i class="fas fa-chevron-down"></i>
+            <div class="profile-dropdown" *ngIf="isDropdownOpen">
+                <div class="dropdown-header">
+                    <img [src]="user?.profileImage || 'assets/default-user.png'" alt="Profile">
+
+                    <div>
+                        <h4>{{ user?.firstName }} {{ user?.lastName }}</h4>
+                        <span>{{ user?.email }}</span>
+                    </div>
+                </div>
+
+                <hr>
+
+                <a routerLink="/profile" (click)="closeDropdown()">
+                    <i class="fas fa-user"></i>
+                    My Profile
+                </a>
+
+                <a routerLink="/settings" (click)="closeDropdown()">
+                    <i class="fas fa-cog"></i>
+                    Settings
+                </a>
+
+                <button type="button" (click)="logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Logout
+                </button>
+            </div>
         </div>
     </div>
 </header>

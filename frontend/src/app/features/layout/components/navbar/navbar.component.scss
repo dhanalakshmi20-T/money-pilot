@@ -3,15 +3,15 @@
     top: 0;
     left: 250px;
     right: 0;
-    z-index: 999;
     height: 72px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 28px;
+    padding: 0 24px;
     background: #ffffff;
     border-bottom: 1px solid #e5e7eb;
-    box-shadow: 0 4px 18px rgba(15, 23, 42, .04);
+    box-shadow: 0 4px 18px rgba(15, 23, 42, .05);
+    z-index: 999;
     transition: left .3s ease;
 }
 
@@ -22,13 +22,12 @@
 }
 
 .menu-btn {
-    width: 44px;
-    height: 44px;
     display: none;
     justify-content: center;
     align-items: center;
+    width: 44px;
+    height: 44px;
     border: none;
-    outline: none;
     border-radius: 12px;
     background: #f8fafc;
     cursor: pointer;
@@ -46,23 +45,17 @@
 
 .mobile-logo {
     display: none;
-    align-items: center;
-    gap: 10px;
 }
 
 .mobile-logo img {
-    width: 40px;
-}
-
-.mobile-logo span {
-    font-size: 20px;
-    font-weight: 700;
-    color: #0f172a;
+    width: 120px;
+    height: auto;
 }
 
 .search-box {
     width: 360px;
     height: 46px;
+    margin-left: 20px;
     display: flex;
     align-items: center;
     padding: 0 18px;
@@ -78,8 +71,8 @@
 }
 
 .search-box i {
-    color: #94a3b8;
     margin-right: 12px;
+    color: #94a3b8;
 }
 
 .search-box input {
@@ -98,7 +91,7 @@
 .navbar-right {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 14px;
 }
 
 .icon-btn {
@@ -126,18 +119,22 @@
 
 .badge {
     position: absolute;
-    top: 7px;
-    right: 7px;
-    width: 18px;
-    height: 18px;
+    top: 8px;
+    right: 8px;
+    width: 16px;
+    height: 16px;
     border-radius: 50%;
     background: #ef4444;
-    color: #ffffff;
-    font-size: 10px;
+    color: white;
+    font-size: 9px;
     font-weight: 600;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.profile-container {
+    position: relative;
 }
 
 .profile {
@@ -152,6 +149,7 @@
 
 .profile:hover {
     background: #f8fafc;
+    box-shadow: 0 6px 18px rgba(15, 23, 42, .05);
 }
 
 .profile img {
@@ -163,10 +161,10 @@
 }
 
 .profile-info h4 {
+    margin: 0;
     font-size: 15px;
     font-weight: 600;
     color: #0f172a;
-    margin-bottom: 2px;
 }
 
 .profile-info span {
@@ -174,9 +172,96 @@
     color: #64748b;
 }
 
-.profile i {
-    font-size: 12px;
+.profile>i {
     color: #94a3b8;
+    font-size: 12px;
+}
+
+.profile-dropdown {
+    position: absolute;
+    top: calc(100% + 12px);
+    right: 0;
+    width: 280px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(15, 223, 42, .12);
+    overflow: hidden;
+    animation: dropdown .25s ease;
+    transform-origin: top right;
+    z-index: 999;
+}
+
+@keyframes dropdown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px) scale(.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.dropdown-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 18px;
+}
+
+.dropdown-header img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.dropdown-header h4 {
+    margin: 0;
+    font-size: 15px;
+    color: #0f172a;
+}
+
+.dropdown-header span {
+    font-size: 12px;
+    color: #64748b;
+}
+
+.profile-dropdown hr {
+    margin: 0;
+    border: none;
+    border-top: 1px solid #e5e7eb;
+}
+
+.profile-dropdown a,
+.profile-dropdown button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 18px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    text-decoration: none;
+    color: #334155;
+    font-size: 14px;
+    transition: .3s;
+}
+
+.profile-dropdown a:hover,
+.profile-dropdown button:hover {
+    background: #f8fafc;
+    color: #22c55e;
+}
+
+.profile-dropdown button {
+    color: #ef4444;
+}
+
+.profile-dropdown button:hover {
+    background: #fef2f2;
 }
 
 @media (max-width: 992px) {
@@ -191,6 +276,7 @@
 
     .mobile-logo {
         display: flex;
+        align-items: center;
     }
 
     .search-box {
@@ -232,10 +318,6 @@
 }
 
 @media (max-width: 480px) {
-    .mobile-logo span {
-        font-size: 17px;
-    }
-
     .mobile-logo img {
         width: 100px;
     }
@@ -252,5 +334,13 @@
     .profile img {
         width: 34px;
         height: 34px;
+    }
+
+    .navbar-right .icon-btn:first-child {
+        display: none;
+    }
+
+    .profile-dropdown {
+        width: 240px;
     }
 }

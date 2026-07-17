@@ -16,6 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/api/auth", authRoutes);
 app.use("/api/test", testRoutes);
 app.use("/api/dashboard", dashboardRoutes);
+app.use("/api/profile", require("./routes/profile.routes"));
 
 app.get("/", (req, res) => {
     res.json({
