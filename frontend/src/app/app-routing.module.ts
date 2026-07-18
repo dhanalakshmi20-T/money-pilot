@@ -20,6 +20,12 @@ const routes: Routes = [
   },
 
   {
+    path: 'profile',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./features/profile/profile.module').then(m => m.ProfileModule)
+  },
+
+  {
     path: '**',
     redirectTo: ''
   }
