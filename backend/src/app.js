@@ -7,6 +7,8 @@ const testRoutes = require("./routes/test.routes");
 
 const dashboardRoutes = require("./routes/dashboard.routes");
 
+const settingsRoutes = require("./routes/settings.routes");
+
 const path = require("path");
 
 const app = express();
@@ -19,6 +21,8 @@ app.use("/api/auth", authRoutes);
 app.use("/api/test", testRoutes);
 app.use("/api/dashboard", dashboardRoutes);
 app.use("/api/profile", require("./routes/profile.routes"));
+app.use("/api/settings", settingsRoutes);
+
 app.use("/uploads", express.static(path.join(__dirname, "../src/uploads")));
 
 app.get("/", (req, res) => {

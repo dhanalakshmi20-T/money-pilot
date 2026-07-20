@@ -8,7 +8,9 @@ const { getProfile, updateProfile, uploadProfileImage } = require("../controller
 const upload = require("../middleware/upload.middleware");
 
 router.get("/", auth, getProfile);
+
 router.put("/", auth, updateProfile);
-router.post("/upload-image", uploadProfileImage);
+
+router.post("/upload-image", auth, upload.single("image"), uploadProfileImage);
 
 module.exports = router;

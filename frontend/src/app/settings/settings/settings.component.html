@@ -1,0 +1,83 @@
+<div class="settings-container">
+    <div class="page-header">
+        <h2>Settings</h2>
+        <p>Manage your application preferences</p>
+    </div>
+    
+    <div *ngIf="loading">Loading...</div>
+
+    <div *ngIf="!loading && preferences">
+        <div class="settings-card">
+            <h3>Appearance</h3>
+
+            <div class="setting-item">
+                <div>
+                    <h4>Theme</h4>
+                    <p>Select application theme.</p>
+                </div>
+
+                <select #theme [value]="preferences.theme" (change)="updateTheme(theme.value)">
+                    <option *ngFor="let item of themes" [value]="item.value">{{ item.label }}</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="settings-card">
+            <h3>Currency</h3>
+
+            <div class="setting-item">
+                <div>
+                    <h4>Default Currency</h4>
+                    <p>Select your preferred currency.</p>
+                </div>
+
+                <select #currency [value]="preferences.currency" (change)="updateCurrency(currency.value)">
+                    <option *ngFor="let item of currencies" [value]="item.value">{{ item.icon }} {{ item.label }}</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="settings-card">
+            <h3>Notifications</h3>
+
+            <div class="setting-item">
+                <label>Email Notifications</label>
+                <input type="checkbox" [checked]="preferences.notifications.email" (change)="toggleNotification('email')">
+            </div>
+
+            <div class="setting-item">
+                <label>Budget Alerts</label>
+                <input type="checkbox" [checked]="preferences.notifications.budgetAlerts" (change)="toggleNotification('budgetAlerts')">
+            </div>
+
+            <div class="setting-item">
+                <label>Savings Reminder</label>
+                <input type="checkbox" [checked]="preferences.notifications.savingsReminder" (change)="toggleNotification('savingsReminder')">
+            </div>
+        </div>
+
+        <div class="settings-card">
+            <h3>Security</h3>
+            <p>Password</p>
+            <button type="button" (click)="openPasswordForm()">Change</button>
+
+            <div *ngIf="showPasswordForm">
+                <form [formGroup]="passwordForm" (ngSubmit)="changePassword()">
+                    <input type="password" placeholder="Current Password" formControlName="currentPassword">
+                    <input type="password" placeholder="New Password" formControlName="newPassword">
+                    <input type="password" placeholder="Confirm Password" formControlName="confirmPassword">
+
+                    <button type="submit">Save Password</button>
+                    <button type="button" (click)="closePasswordForm()">Cancel</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="settings-card">
+            <h3>Danger Zone</h3>
+            <p>Delete your account permanently.</p>
+
+            <button type="button" (click)="deleteAccount()">Delete Account</button>
+        </div>
+    </div>
+</div>

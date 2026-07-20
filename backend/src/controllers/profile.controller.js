@@ -77,17 +77,20 @@ exports.uploadProfileImage = async (req, res) => {
         }
 
         const imagePath = `/uploads/profile/${req.file.filename}`;
-        const user = await User.findByIdAndUpdate(
-            req.user.id,
-            {
-                profileImage: imagePath
-            },
+        const user = await User.findByIdAndUpdate(req.user.id);
 
-            {
-                new: true
-            }
-        ).select("-password");
-        res.status(200).json({
+        if (!user) {
+            return res.status(404).json({
+                success: false,
+                message: "User not found."
+            });
+        }
+
+        user.profileImage = imagePath;
+
+        await user.save();
+        
+        return res.status(200).json({
             success: true,
             message: "Profile image updated.",
             data: user

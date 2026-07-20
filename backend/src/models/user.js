@@ -48,6 +48,37 @@ const userSchema = new mongoose.Schema(
         profileImage: {
             type: String,
             default: ''
+        },
+
+        preferences: {
+            theme: {
+                type: String,
+                enum: ['light', 'dark', 'system'],
+                default: 'light'
+            }
+        },
+
+        currency: {
+            type: String,
+            enum: ['INR', 'USD', 'EUR', 'GBP'],
+            default: 'INR'
+        },
+
+        notifications: {
+            email: {
+                type: Boolean,
+                default: true
+            },
+
+            budgetAlerts: {
+                type: Boolean,
+                default: true
+            },
+
+            savingsReminder: {
+                type: Boolean,
+                default: true
+            }
         }
     },
 
