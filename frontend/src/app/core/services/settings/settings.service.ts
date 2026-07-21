@@ -2,7 +2,6 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { environment } from "src/environments/environment";
-import { Settings } from "../../models/settings/settings";
 import { Preferences } from "../../models/settings/preferences";
 
 @Injectable({
@@ -14,12 +13,12 @@ export class SettingsService {
 
   constructor(private http: HttpClient) {}
 
-  getSettings(): Observable<Settings> {
-    return this.http.get<Settings>(this.apiUrl);
+  getSettings(): Observable<any> {
+    return this.http.get(this.apiUrl);
   }
 
-  updatePreferences(data: Preferences): Observable<any> {
-    return this.http.put(`${this.apiUrl}/preferences`, data);
+  updatePreferences(preferences: Preferences): Observable<any> {
+    return this.http.put(`${this.apiUrl}/preferences`, preferences);
   }
 
   changePassword(data: any): Observable<any> {

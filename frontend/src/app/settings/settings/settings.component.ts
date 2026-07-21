@@ -1,7 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { Router } from "@angular/router";
 import { Currency, Preferences, Theme } from "src/app/core/models/settings/preferences";
 import { SettingsService } from "src/app/core/services/settings/settings.service";
+import { ThemeService } from "src/app/core/services/theme/theme.service";
 
 @Component({
   selector: 'app-settings',
@@ -11,27 +13,28 @@ import { SettingsService } from "src/app/core/services/settings/settings.service
 export class SettingsComponent implements OnInit {
 
   loading = false;
-  savings = false;
   showPasswordForm = false;
   preferences!: Preferences;
   passwordForm!: FormGroup;
 
   themes = [
     { label: 'Light', value: 'light' },
-    { label: 'dark', value: 'dark' },
-    { label: 'system', value: 'system' }
+    { label: 'Dark', value: 'dark' },
+    { label: 'System', value: 'system' }
   ];
 
   currencies = [
-    { icon: '&#8377;', label: 'INR', value: 'INR' },
-    { icon: '&#36;', label: 'USD', value: 'USD' },
-    { icon: '&euro;', label: 'EUR', value: 'EUR' },
-    { icon: '&pound;', label: 'GBP', value: 'GBP' }
+    { label: '₹ INR', value: 'INR' },
+    { label: '$ USD', value: 'USD' },
+    { label: '€ EUR', value: 'EUR' },
+    { label: '£ GBP', value: 'GBP' }
   ];
 
   constructor(
     private fb: FormBuilder,
-    private settingsService: SettingsService
+    private settingsService: SettingsService,
+    private themeService: ThemeService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -49,14 +52,18 @@ export class SettingsComponent implements OnInit {
 
   loadSettings(): void {
     this.loading = true;
-    
     this.settingsService.getSettings().subscribe({
-      next: (res: any) => {
+      next: (response) => {
+        console.log('Settings Response:', response);
+
         this.loading = false;
-        this.preferences = res.preferences;
+        this.preferences = response.preferences;
+        this.themeService.applyTheme(this.preferences.theme);
       },
 
-      error: () => {
+      error: (err) => {
+        console.error(err);
+
         this.loading = false;
       }
     });
@@ -64,6 +71,7 @@ export class SettingsComponent implements OnInit {
 
   updateTheme(value: string): void {
     this.preferences.theme = value as Theme;
+    this.themeService.applyTheme(this.preferences.theme);
     this.savePreferences();
   }
 
@@ -99,13 +107,13 @@ export class SettingsComponent implements OnInit {
     const form = this.passwordForm.value;
 
     if (form.newPassword !== form.confirmPassword) {
-      alert('Passwords do not match.');
+      alert('Passwords do not match');
       return;
     }
 
     this.settingsService.changePassword(form).subscribe({
       next: () => {
-        alert('Password updated successfully.');
+        alert('Password updated successfully');
         this.closePasswordForm();
       }
     });
@@ -119,4 +127,7 @@ export class SettingsComponent implements OnInit {
     this.settingsService.deleteAccount().subscribe();
   }
 
+  goBack(): void {
+    this.router.navigate(['/dashboard']);
+  }
 }

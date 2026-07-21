@@ -1,21 +1,31 @@
 <div class="settings-container">
     <div class="page-header">
-        <h2>Settings</h2>
-        <p>Manage your application preferences</p>
+        <button class="back-btn" type="button" (click)="goBack()">
+            <i class="fas fa-arrow-left"></i>
+            Back
+        </button>
+
+        <div class="header-content">
+            <h2>Settings</h2>
+            <p>Manage your application preferences</p>
+        </div>
     </div>
-    
-    <div *ngIf="loading">Loading...</div>
+
+    <div class="loading" *ngIf="loading">Loading settings...</div>
 
     <div *ngIf="!loading && preferences">
         <div class="settings-card">
-            <h3>Appearance</h3>
+            <h3>
+                <i class="fas fa-palette"></i>
+                Appearance
+            </h3>
 
             <div class="setting-item">
                 <div>
                     <h4>Theme</h4>
-                    <p>Select application theme.</p>
+                    <p>Select your preferred application theme.</p>
                 </div>
-
+                
                 <select #theme [value]="preferences.theme" (change)="updateTheme(theme.value)">
                     <option *ngFor="let item of themes" [value]="item.value">{{ item.label }}</option>
                 </select>
@@ -23,61 +33,116 @@
         </div>
 
         <div class="settings-card">
-            <h3>Currency</h3>
+            <h3>
+                <i class="fas fa-wallet"></i>
+                Currency
+            </h3>
 
             <div class="setting-item">
                 <div>
                     <h4>Default Currency</h4>
-                    <p>Select your preferred currency.</p>
+                    <p>Choose the currency used across Money Pilot.</p>
                 </div>
 
                 <select #currency [value]="preferences.currency" (change)="updateCurrency(currency.value)">
-                    <option *ngFor="let item of currencies" [value]="item.value">{{ item.icon }} {{ item.label }}</option>
+                    <option *ngFor="let item of currencies" [value]="item.value">{{ item.label }}</option>
                 </select>
             </div>
         </div>
 
         <div class="settings-card">
-            <h3>Notifications</h3>
+            <h3>
+                <i class="fas fa-bell"></i>
+                Notifications
+            </h3>
 
             <div class="setting-item">
-                <label>Email Notifications</label>
-                <input type="checkbox" [checked]="preferences.notifications.email" (change)="toggleNotification('email')">
+                <div>
+                    <h4>Email Notifications</h4>
+                    <p>Receive important updated by email.</p>
+                </div>
+                
+                <label class="switch">
+                    <input type="checkbox" [checked]="preferences.notifications.email" (change)="toggleNotification('email')">
+                    <span class="slider"></span>
+                </label>
             </div>
 
             <div class="setting-item">
-                <label>Budget Alerts</label>
-                <input type="checkbox" [checked]="preferences.notifications.budgetAlerts" (change)="toggleNotification('budgetAlerts')">
+                <div>
+                    <h4>Budget Alerts</h4>
+                    <p>Notify when your budget limit is reached.</p>
+                </div>
+
+                <label class="switch">
+                    <input type="checkbox" [checked]="preferences.notifications.budgetAlerts" (change)="toggleNotification('budgetAlerts')">
+                    <span class="slider"></span>
+                </label>
             </div>
 
             <div class="setting-item">
-                <label>Savings Reminder</label>
-                <input type="checkbox" [checked]="preferences.notifications.savingsReminder" (change)="toggleNotification('savingsReminder')">
+                <div>
+                    <h4>Savings Reminder</h4>
+                    <p>Get reminders to achieve your savings goals.</p>
+                </div>
+
+                <label class="switch">
+                    <input type="checkbox" [checked]="preferences.notifications.savingsReminder" (change)="toggleNotification('savingsReminder')">
+                    <span class="slider"></span>
+                </label>
             </div>
         </div>
 
         <div class="settings-card">
-            <h3>Security</h3>
-            <p>Password</p>
-            <button type="button" (click)="openPasswordForm()">Change</button>
+            <h3>
+                <i class="fas fa-lock"></i>
+                Security
+            </h3>
 
-            <div *ngIf="showPasswordForm">
+            <div class="setting-item">
+                <div>
+                    <h4>Password</h4>
+                    <p>Update your account password.</p>
+                </div>
+
+                <button class="btn-primary" type="button" (click)="openPasswordForm()">Change Password</button>
+            </div>
+
+            <div class="password-form" *ngIf="showPasswordForm">
                 <form [formGroup]="passwordForm" (ngSubmit)="changePassword()">
                     <input type="password" placeholder="Current Password" formControlName="currentPassword">
                     <input type="password" placeholder="New Password" formControlName="newPassword">
                     <input type="password" placeholder="Confirm Password" formControlName="confirmPassword">
 
-                    <button type="submit">Save Password</button>
-                    <button type="button" (click)="closePasswordForm()">Cancel</button>
+                    <div class="password-buttons">
+                        <button class="btn-primary" type="submit">Save</button>
+                        <button class="btn-secondary" type="button" (click)="closePasswordForm()">Cancel</button>
+                    </div>
                 </form>
             </div>
         </div>
 
         <div class="settings-card">
-            <h3>Danger Zone</h3>
-            <p>Delete your account permanently.</p>
+            <h3>
+                <i class="fas fa-circle-info"></i>
+                About
+            </h3>
 
-            <button type="button" (click)="deleteAccount()">Delete Account</button>
+            <div class="setting-item">
+                <div>
+                    <h4>Money Pilot</h4>
+                    <p>Version 1.0.0</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="settings-card danger">
+            <h3>
+                <i class="fas fa-triangle-exclamation"></i>
+                Danger Zone
+            </h3>
+            <p>Deleting your account will permanently remove all transactions, budgets, reports and personal data.</p>
+            <button class="btn-danger" type="button" (click)="deleteAccount()">Delete Account</button>
         </div>
     </div>
 </div>
