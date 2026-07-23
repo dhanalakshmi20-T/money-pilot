@@ -1,0 +1,149 @@
+@import 'variables';
+
+@mixin flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin flex-between {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+@mixin flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+@mixin flex-start {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+@mixin flex-end {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+@mixin card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: $radius-lg;
+    box-shadow: var(--shadow-sm);
+    padding: $space-6;
+    transition: var(--transition);
+}
+
+@mixin card-hover {
+    &:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-md);
+    }
+}
+
+@mixin button-base {
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border-radius: $radius-md;
+    padding: 12px 22px;
+    font-size: $text-md;
+    font-weight: $font-semibold;
+    transition: var(--transition);
+}
+
+@mixin button-primary {
+    @include button-base;
+    background: var(--primary);
+    color: white;
+
+    &:hover {
+        background: var(--primary-dark);
+    }
+}
+
+@mixin button-outline {
+    @include button-base();
+    background: transparent;
+    color: var(--primary);
+    border: 1px solid var(--primary);
+
+    &:hover {
+        background: var(--primary);
+        color: white;
+    }
+}
+
+@mixin input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid var(--border);
+    border-radius: $radius-md;
+    background: var(--surface);
+    color: var(--text);
+    transition: var(--transition);
+
+    &:focus {
+        outline: none;
+        border-radius: var(--primary);
+        box-shadow: 0 0 0 3px rgba(20, 184, 166, .15);
+    }
+}
+
+@mixin scrollbar {
+    &::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: var(--primary-light);
+        border-radius: 20px;
+    }
+}
+
+@mixin text-ellipsis {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+@mixin mobile {
+    @media (max-width: $mobile) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media (max-width: $tablet) {
+        @content;
+    }
+}
+
+@mixin laptop {
+    @media (max-width: $laptop) {
+        @content;
+    }
+}
+
+@mixin desktop {
+    @media (max-width: $desktop) {
+        @content;
+    }
+}
+
+@mixin fade-in {
+    animation: fadeIn .3s ease;
+}
+
+@mixin scale-in {
+    animation: scaleIn .3s ease;
+}

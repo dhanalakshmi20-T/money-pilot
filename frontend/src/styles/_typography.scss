@@ -1,0 +1,178 @@
+@import 'variables';
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+body {
+    font-family: 'Inter', sans-serif;
+    font-size: $text-md;
+    font-weight: $font-regular;
+    line-height: 1.6;
+    color: var(--text);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+    color: var(--text);
+    font-weight: $font-bold;
+    line-height: 1.2;
+}
+
+h1 {
+    font-size: $text-5xl;
+}
+
+h2 {
+    font-size: $text-4xl;
+}
+
+h3 {
+    font-size: $text-3xl;
+}
+
+h4 {
+    font-size: $text-2xl;
+}
+
+h5 {
+    font-size: $text-xl;
+}
+
+h6 {
+    font-size: $text-lg;
+}
+
+p {
+    margin: 0;
+    color: var(--text-secondary);
+    line-height: 1.7;
+}
+
+a {
+    color: var(--primary);
+    text-decoration: none;
+    transition: var(--transition);
+
+    &:hover {
+        color: var(--primary-dark);
+    }
+}
+
+label {
+    display: inline-block;
+    margin-bottom: 8px;
+    font-size: $text-sm;
+    font-weight: $font-medium;
+    color: var(--text);
+}
+
+small {
+    font-size: $text-xs;
+    color: var(--text-secondary);
+}
+
+.text-primary {
+    color: var(--primary);
+}
+
+.text-success {
+    color: var(--success);
+}
+
+.text-danger {
+    color: var(--danger);
+}
+
+.text-warning {
+    color: var(--warning);
+}
+
+.text-info {
+    color: var(--info);
+}
+
+.text-secondary {
+    color: var(--text-secondary);
+}
+
+.text-white {
+    color: #fff;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-bold {
+    font-weight: $font-bold;
+}
+
+.text-semibold {
+    font-weight: $font-semibold;
+}
+
+.text-medium {
+    font-weight: $font-medium;
+}
+
+.text-light {
+    font-weight: $font-light;
+}
+
+.fs-xs {
+    font-size: $text-xs;
+}
+
+.fs-sm {
+    font-size: $text-sm;
+}
+
+.fs-md {
+    font-size: $text-md;
+}
+
+.fs-lg {
+    font-size: $text-lg;
+}
+
+.fs-xl {
+    font-size: $text-xl;
+}
+
+.fs-2xl {
+    font-size: $text-2xl;
+}
+
+.fs-3xl {
+    font-size: $text-3xl;
+}
+
+@media (max-width: $tablet) {
+    h1 {
+        font-size: 32px;
+    }
+
+    h2 {
+        font-size: 28px;
+    }
+
+    h3 {
+        font-size: 24px;
+    }
+
+    h4 {
+        font-size: 20px;
+    }
+}

@@ -5,7 +5,7 @@ import { AuthGuard } from './core/guards/auth.guard';
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./features/landing/landing.module').then(m => m.LandingModule)
+    loadChildren: () => import('./landing-page/landing-page.module').then(m => m.LandingPageModule)
   },
 
   {
@@ -17,18 +17,6 @@ const routes: Routes = [
     path: '',
     canActivate: [AuthGuard],
     loadChildren: () => import('./features/layout/layout.module').then(m => m.LayoutModule)
-  },
-
-  {
-    path: 'profile',
-    canActivate: [AuthGuard],
-    loadChildren: () => import('./features/profile/profile.module').then(m => m.ProfileModule)
-  },
-
-  {
-    path: 'settings',
-    canActivate: [AuthGuard],
-    loadChildren: () => import('./settings/settings.module').then(m => m.SettingsModule)
   },
 
   {

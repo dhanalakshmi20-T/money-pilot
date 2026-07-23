@@ -1,0 +1,186 @@
+@import 'variables';
+@import 'mixins';
+
+.app-layout {
+    display: flex;
+    min-height: 100vh;
+    background: var(--bg);
+}
+
+.sidebar {
+    width: $sidebar-width;
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    overflow-y: auto;
+    transition: var(--transition);
+    z-index: $z-sidebar;
+}
+
+.sidebar-header {
+    height: $navbar-height;
+    @include flex-center;
+    border-bottom: 1px solid var(--border);
+}
+
+.sidebar-logo {
+    font-size: 24px;
+    font-weight: $font-bold;
+    color: var(--primary);
+}
+
+.sidebar-menu {
+    padding: 20px 16px;
+}
+
+.sidebar-menu ul {
+    list-style: none;
+}
+
+.sidebar-menu li {
+    margin-bottom: 8px;
+}
+
+.sidebar-menu a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    border-radius: $radius-md;
+    text-decoration: none;
+    color: var(--text-secondary);
+    transition: var(--transition);
+}
+
+.sidebar-menu a:hover {
+    background: rgba(15, 118, 110, .08);
+    color: var(--primary);
+}
+
+.sidebar-menu a.active {
+    background: var(--primary);
+    color: #fff;
+}
+
+.sidebar-menu i {
+    width: 22px;
+    text-align: center;
+}
+
+.main-content {
+    flex: 1;
+    margin-left: $sidebar-width;
+    min-height: 100vh;
+    background: var(--bg);
+}
+
+.topbar {
+    height: $navbar-height;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 0 30px;
+
+    @include flex-between;
+
+    position: sticky;
+    top: 0;
+    z-index: $z-navbar;
+}
+
+.topbar-left,
+.topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.page {
+    padding: 30px;
+}
+
+.page-header {
+    margin-bottom: 30px;
+}
+
+.page-title {
+    font-size: $text-3xl;
+    font-weight: $font-bold;
+    color: var(--text);
+}
+
+.page-subtitle {
+    margin-top: 8px;
+    color: var(--text-secondary);
+}
+
+.container {
+    width: 100%;
+    max-width: $content-max-width;
+    margin: auto;
+}
+
+.grid {
+    display: grid;
+    gap: 20px;
+}
+
+.grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.grid-4 {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+@media (max-width: $laptop) {
+    .sidebar {
+        width: 80px;
+    }
+
+    .sidebar-logo {
+        display: none;
+    }
+
+    .sidebar-menu a span {
+        display: none;
+    }
+
+    .main-content {
+        margin-left: 80px;
+    }
+}
+
+@media (max-width: $tablet) {
+    .sidebar {
+        transform: translateX(-100%);
+    }
+
+    .sidebar.open {
+        transform: translateX(0);
+    }
+
+    .main-content {
+        margin-left: 0;
+    }
+
+    .topbar {
+        padding: 0 20px;
+    }
+
+    .page {
+        padding: 20px;
+    }
+
+    .grid-2,
+    .grid-3,
+    .grid-4 {
+        grid-template-columns: 1fr;
+    }
+}

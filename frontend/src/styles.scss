@@ -1,67 +1,7 @@
-/* ================================
-   Light Theme
-================================ */
-
-body.light-theme {
-
-    --bg-color: #f8fafc;
-
-    --card-bg: #ffffff;
-
-    --text-color: #0f172a;
-
-    --text-secondary: #64748b;
-
-    --border-color: #e2e8f0;
-
-    --shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-
-    background: var(--bg-color);
-
-    color: var(--text-color);
-
-}
-
-/* ================================
-   Dark Theme
-================================ */
-
-body.dark-theme {
-
-    --bg-color: #0f172a;
-
-    --card-bg: #1e293b;
-
-    --text-color: #f8fafc;
-
-    --text-secondary: #cbd5e1;
-
-    --border-color: #334155;
-
-    --shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
-
-    background: var(--bg-color);
-
-    color: var(--text-color);
-
-}
-
-/* ================================
-   Common
-================================ */
-
-body {
-
-    margin: 0;
-
-    font-family: "Segoe UI", sans-serif;
-
-    transition: background .3s ease, color .3s ease;
-
-}
-
-* {
-
-    box-sizing: border-box;
-
-}
+@import 'styles/variables';
+@import 'styles/theme';
+@import 'styles/mixins';
+@import 'styles/typography';
+@import 'styles/components';
+@import 'styles/layout';
+@import 'styles/utilities';

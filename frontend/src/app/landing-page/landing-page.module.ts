@@ -1,38 +1,39 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { LandingRoutingModule } from './landing-routing.module';
 import { FormsModule } from '@angular/forms';
-import { LandingComponent } from './landing/landing.component';
+import { LandingPageRoutingModule } from './landing-page-routing.module';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HeroComponent } from './hero/hero.component';
 import { FeaturesComponent } from './features/features.component';
 import { HowItWorksComponent } from './how-it-works/how-it-works.component';
-import { DashboardPreviewComponent } from './dashboard-preview/dashboard-preview.component';
-import { WhyChooseComponent } from './why-choose/why-choose.component';
-import { TestimonialsComponent } from './testimonials/testimonials.component';
-import { FaqComponent } from './faq/faq.component';
 import { CallToActionComponent } from './call-to-action/call-to-action.component';
+import { DashboardPreviewComponent } from './dashboard-preview/dashboard-preview.component';
+import { FaqComponent } from './faq/faq.component';
 import { FooterComponent } from './footer/footer.component';
+import { LandingComponent } from './landing/landing.component';
+import { TestimonialsComponent } from './testimonials/testimonials.component';
+import { WhyChooseComponent } from './why-choose/why-choose.component';
+
 
 @NgModule({
   declarations: [
-    LandingComponent,
     NavbarComponent,
     HeroComponent,
     FeaturesComponent,
     HowItWorksComponent,
-    DashboardPreviewComponent,
-    WhyChooseComponent,
-    TestimonialsComponent,
-    FaqComponent,
     CallToActionComponent,
-    FooterComponent
+    DashboardPreviewComponent,
+    FaqComponent,
+    FooterComponent,
+    LandingComponent,
+    TestimonialsComponent,
+    WhyChooseComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
-    LandingRoutingModule
+    LandingPageRoutingModule
   ]
 })
-export class LandingModule { }
+export class LandingPageModule { }

@@ -1,0 +1,86 @@
+@import 'variables';
+
+:root {
+    --primary: #{$primary};
+    --primary-light: #{$primary-light};
+
+    --secondary: #{$secondary};
+
+    --success: #{$success};
+    --warning: #{$warning};
+    --danger: #{$danger};
+    --info: #{$info};
+
+    --bg: #{$background-light};
+    --surface: #{$surface-light};
+    --card: #{$card-light};
+
+    --text: #{$text-light};
+    --text-secondary: #{$text-secondary-light};
+
+    --border: #{$border-light};
+
+    --shadow-xs: #{$shadow-xs};
+    --shadow-sm: #{$shadow-sm};
+    --shadow-md: #{$shadow-md};
+    --shadow-lg: #{$shadow-lg};
+    --shadow-xl: #{$shadow-xl};
+
+    --radius-sm: #{$radius-sm};
+    --radius-md: #{$radius-md};
+    --radius-lg: #{$radius-lg};
+    --radius-xl: #{$radius-xl};
+
+    --transition: #{$transition};
+}
+
+body.dark-theme {
+    --bg: #{$background-dark};
+    --surface: #{$surface-dark};
+    --card: #{$card-dark};
+
+    --text: #{$text-dark};
+    --text-secondary: #{$text-secondary-dark};
+
+    --border: #{$border-dark};
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--text);
+    transition: var(--transition);
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-light);
+    border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary);
+}
+
+::selection {
+    background: var(--primary);
+    color: white;
+}
+
+:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+}
